@@ -31,14 +31,23 @@ public class Lab1P2_LiaErazo {
                 return;
             }
             int[][] matriz = Generar(size);
-            System.out.println("\nMatriz generada :");
+            System.out.println("\nMatriz generada:");
             Imprimir(matriz);
-            System.out.println("\nMatriz ordenadda :");
+            System.out.println("\nMatriz ordenada:");
             Ordenamiento(matriz);
             Imprimir(matriz);
-            System.out.println("\nArreglo de medianas :");
+            System.out.println("\nArreglo de medianas:");
             ArrayList<Integer> medianas = ArrayMedians(matriz);
-            System.out.println(medianas);
+            for (int i = 0; i < medianas.size(); i++) {
+                System.out.print("["+medianas.get(i)+"]");
+            }
+            System.out.println("\nArreglo de medianas ordenado:");
+            BubbleSortArrayList(medianas);
+            for (int i = 0; i < medianas.size(); i++) {
+                System.out.print("["+medianas.get(i)+"]");
+            }
+            int mediana = MeanOfMeans(medianas);
+            System.out.println("\nMediana de las medianas: " + mediana);
             seguir = false;
         } while (seguir);
     }//main
@@ -81,7 +90,8 @@ public class Lab1P2_LiaErazo {
 
     public static void Ordenamiento(int[][] matriz) {
         for (int i = 0; i < matriz.length; i++) {
-            BubbleSort(matriz[i]);
+            int numero = matriz.length;
+            BubbleSort(matriz[i], numero);
         }
     }
 
@@ -93,7 +103,7 @@ public class Lab1P2_LiaErazo {
             for (int j = 0; j < matriz[i].length; j++) {
                 fila[j] = matriz[i][j];
             }
-            BubbleSort(fila);
+            BubbleSort(fila, matriz.length);
             int half = fila.length / 2;
             if (fila.length % 2 == 0) {
                 median = (fila[half - 1] + fila[half]) / 2;
@@ -106,6 +116,28 @@ public class Lab1P2_LiaErazo {
     }
 
     public static void BubbleSortArrayList(ArrayList<Integer> medians) {
+        int current_spot;
+        int next_spot;
+        for (int i = 0; i < medians.size() - 1; i++) {
+            current_spot = medians.get(i);
+            next_spot = medians.get(i + 1);
+            if (current_spot > next_spot) {
+                medians.set(i, next_spot);
+                medians.set(i + 1, current_spot);
+            }
+        }
+    }
 
+    public static int MeanOfMeans(ArrayList<Integer> medians) {
+        int first_half;
+        int second_half;
+        int mitad = (medians.size() - 1) / 2;
+        if (medians.size() % 2 == 0) {
+            first_half = medians.get(mitad - 1);
+            second_half = medians.get(mitad);
+            return (first_half + second_half) / 2;
+        } else {
+            return mitad;
+        }
     }
 }
