@@ -4,6 +4,7 @@
  */
 package lab1p2_liaerazo;
 
+import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -23,20 +24,22 @@ public class Lab1P2_LiaErazo {
     public static void main(String[] args) {
         boolean seguir = true;
         do {
-            System.out.println("\nIngrese el tamaño de matriz deseado :");
+            System.out.println("Ingrese el tamaño de matriz deseado :");
             int size = leer.nextInt();
             if (size % 2 == 0 && size <= 4) {
-                System.out.println("Ingrese un numero impar mayot que 4");
+                System.out.println("\nIngrese un numero impar mayot que 4");
                 return;
             }
             int[][] matriz = Generar(size);
-            System.out.println("Matriz generada :");
+            System.out.println("\nMatriz generada :");
             Imprimir(matriz);
-            System.out.println("Matriz ordenadda :");
+            System.out.println("\nMatriz ordenadda :");
             Ordenamiento(matriz);
             Imprimir(matriz);
-            System.out.println("Arreglo de medianas :");
-
+            System.out.println("\nArreglo de medianas :");
+            ArrayList<Integer> medianas = ArrayMedians(matriz);
+            System.out.println(medianas);
+            seguir = false;
         } while (seguir);
     }//main
 
@@ -77,4 +80,23 @@ public class Lab1P2_LiaErazo {
         }
     }
 
+    public static ArrayList<Integer> ArrayMedians(int[][] matriz) {
+        ArrayList<Integer> medians = new ArrayList<>();
+        int median;
+        for (int i = 0; i < matriz.length; i++) {
+            int[] fila = new int[matriz[i].length];
+            for (int j = 0; j < matriz[i].length; j++) {
+                fila[j] = matriz[i][j];
+            }
+            BubbleSort(fila);
+            int half = fila.length / 2;
+            if (fila.length % 2 == 0) {
+                median = (fila[half - 1] + fila[half]) / 2;
+            } else {
+                median = fila[half];
+            }
+            medians.add(median);
+        }
+        return medians;
+    }
 }
