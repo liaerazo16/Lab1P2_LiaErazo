@@ -24,14 +24,14 @@ public class Lab1P2_LiaErazo {
     public static void main(String[] args) {
         boolean seguir = true;
         do {
-            System.out.println("Ingrese el tamaño de matriz deseado :");
+            System.out.println("Ingrese el tamaño de matriz deseado:");
             int size = leer.nextInt();
             if (size % 2 == 0 && size <= 4) {
-                System.out.println("\nIngrese un numero impar mayot que 4");
+                System.out.println("Ingrese un numero impar mayor que 4");
                 return;
             }
             int[][] matriz = Generar(size);
-            System.out.println("\nMatriz generada:");
+            System.out.println("Matriz generada:");
             Imprimir(matriz);
             System.out.println("\nMatriz ordenada:");
             Ordenamiento(matriz);
@@ -39,12 +39,12 @@ public class Lab1P2_LiaErazo {
             System.out.println("\nArreglo de medianas:");
             ArrayList<Integer> medianas = ArrayMedians(matriz);
             for (int i = 0; i < medianas.size(); i++) {
-                System.out.print("["+medianas.get(i)+"]");
+                System.out.print("[" + medianas.get(i) + "]");
             }
             System.out.println("\nArreglo de medianas ordenado:");
             BubbleSortArrayList(medianas);
             for (int i = 0; i < medianas.size(); i++) {
-                System.out.print("["+medianas.get(i)+"]");
+                System.out.print("[" + medianas.get(i) + "]");
             }
             int mediana = MeanOfMeans(medianas);
             System.out.println("\nMediana de las medianas: " + mediana);
@@ -133,8 +133,8 @@ public class Lab1P2_LiaErazo {
         int second_half;
         int mitad = (medians.size() - 1) / 2;
         if (medians.size() % 2 == 0) {
-            first_half = medians.get(mitad - 1);
-            second_half = medians.get(mitad);
+            first_half = medians.get(mitad);
+            second_half = medians.get(mitad + 1);
             return (first_half + second_half) / 2;
         } else {
             return mitad;
