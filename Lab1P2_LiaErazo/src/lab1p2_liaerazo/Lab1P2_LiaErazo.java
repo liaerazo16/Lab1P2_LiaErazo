@@ -12,6 +12,7 @@ import java.util.Scanner;
  * @author Paola
  */
 public class Lab1P2_LiaErazo {
+
     //scanner read para strings
     static Scanner leer = new Scanner(System.in);
     static Random random = new Random();
@@ -31,6 +32,10 @@ public class Lab1P2_LiaErazo {
             int[][] matriz = Generar(size);
             System.out.println("Matriz generada :");
             Imprimir(matriz);
+            System.out.println("Matriz ordenadda :");
+            Ordenamiento(matriz);
+            Imprimir(matriz);
+            System.out.println("Arreglo de medianas :");
 
         } while (seguir);
     }//main
@@ -56,7 +61,7 @@ public class Lab1P2_LiaErazo {
 
     public static void BubbleSort(int[] array) {
         for (int i = 0; i < array.length; i++) {
-            for (int j = 0; j < array.length; j++) {
+            for (int j = 0; j < array.length - 1; j++) {
                 if (array[j] > array[j + 1]) {
                     int X = array[j];
                     array[j] = array[j + 1];
@@ -65,11 +70,11 @@ public class Lab1P2_LiaErazo {
             }
         }
     }
-    
-     public static void Ordenadamiento(int[][]matriz){
-         for (int i = 0; i < matriz.length; i++) {
-             BubbleSort(matriz[i]);
-         }
+
+    public static void Ordenamiento(int[][] matriz) {
+        for (int i = 0; i < matriz.length; i++) {
+            BubbleSort(matriz[i]);
+        }
     }
-     
+
 }
