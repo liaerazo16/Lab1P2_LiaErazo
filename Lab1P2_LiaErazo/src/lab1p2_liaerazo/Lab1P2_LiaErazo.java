@@ -62,15 +62,20 @@ public class Lab1P2_LiaErazo {
         }
     }
 
-    public static void BubbleSort(int[] array) {
-        for (int i = 0; i < array.length; i++) {
-            for (int j = 0; j < array.length - 1; j++) {
-                if (array[j] > array[j + 1]) {
-                    int X = array[j];
-                    array[j] = array[j + 1];
-                    array[j + 1] = X;
+    public static void BubbleSort(int[] array, int numero) {
+        if (numero == 1) {
+        } else {
+            for (int i = 0; i < array.length; i++) {
+                for (int j = 0; j < array.length - 1; j++) {
+                    if (array[j] > array[j + 1]) {
+                        int X = array[j];
+                        array[j] = array[j + 1];
+                        array[j + 1] = X;
+                    }
                 }
             }
+
+            BubbleSort(array, numero - 1);
         }
     }
 
@@ -98,5 +103,9 @@ public class Lab1P2_LiaErazo {
             medians.add(median);
         }
         return medians;
+    }
+
+    public static void BubbleSortArrayList(ArrayList<Integer> medians) {
+
     }
 }
